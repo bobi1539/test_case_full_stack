@@ -90,6 +90,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        Category::destroy($category->id);
+        return redirect('/categories')->with('messageSuccess', 'Kategori berhasil dihapus');
     }
 }

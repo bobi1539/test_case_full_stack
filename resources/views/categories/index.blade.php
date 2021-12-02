@@ -41,9 +41,14 @@
                                         </a>
                                     </td>
                                     <td class="text-center">
-                                        <a href="/categories/delete" class="btn btn-sm btn-outline-danger">
-                                            hapus
-                                        </a>
+                                        <form action="/categories/{{ $category->id }}" method="POST" class="d-inline">
+                                            @method('delete')
+                                            @csrf
+                                            <button type="submit" class="btn btn-sm btn-outline-danger"
+                                                onclick="return confirm('Yakin data ingin dihapus?')">
+                                                hapus
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
