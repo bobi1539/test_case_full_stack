@@ -79,7 +79,18 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        $rules = [
+            'name' => ['required', 'max:255'],
+        ];
+
+        if ($request->name != $category->name) {
+            $rules['name'] = ['required', 'unique:categories'];
+        }
+
+        $validatedData = $request->validate($rules);
+
+        Category::where('id', $category->id)->update($validatedData);
+        return redirect('/categories')->with('messageSuccess', 'Kategori berhasil di update');
     }
 
     /**
