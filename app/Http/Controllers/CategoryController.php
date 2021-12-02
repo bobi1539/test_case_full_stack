@@ -15,7 +15,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return view('categories.index', [
+            'title' => 'Kategori Produk',
+            'categories' => Category::paginate(10)
+        ]);
     }
 
     /**
