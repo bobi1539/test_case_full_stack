@@ -31,7 +31,7 @@ class LoginController extends Controller
         // use Auth class to check login
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-
+            $request->session()->put("email", $request->email);
             return redirect()->intended('/dashboard')->with('messageSuccess', 'Berhasil Login!');
         } else {
             $request->session()->flash('messageError', 'Gagal Login!');

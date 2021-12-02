@@ -11,7 +11,12 @@
                     <a class="nav-link {{ $active == 'home' ? 'active' : '' }}" aria-current="page" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ $active == 'login' ? 'active' : '' }}" href="/login">Login Admin</a>
+                    @if (session()->has('email'))
+                        <a class="nav-link {{ $active == 'dashboard' ? 'active' : '' }}"
+                            href="/dashboard">Dashboard</a>
+                    @else
+                        <a class="nav-link {{ $active == 'login' ? 'active' : '' }}" href="/login">Login Admin</a>
+                    @endif
                 </li>
             </ul>
         </div>
