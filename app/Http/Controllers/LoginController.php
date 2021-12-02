@@ -22,15 +22,17 @@ class LoginController extends Controller
 
     public function authenticate(Request $request)
     {
+        // validate request
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required']
         ]);
 
+        // use Auth class to check login
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('/dashboard');
+            return redirect()->intended('/dashboard')->with('messageSuccess', 'Berhasil Login!');
         } else {
             $request->session()->flash('messageError', 'Gagal Login!');
 
