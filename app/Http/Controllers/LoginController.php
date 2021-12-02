@@ -30,8 +30,7 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            // return redirect()->intended('/dashboard');
-            echo "Berhasil login";
+            return redirect()->intended('/dashboard');
         } else {
             $request->session()->flash('messageError', 'Gagal Login!');
 
@@ -48,9 +47,5 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
-    }
-
-    public function createUser()
-    {
     }
 }

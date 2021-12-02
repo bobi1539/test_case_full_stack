@@ -1,6 +1,9 @@
 @extends('layouts.main')
 
+@include('layouts.navbar')
+
 @section('container')
+
 
     <div class="row justify-content-center mt-5">
         <div class="col-md-5">
@@ -20,7 +23,7 @@
             @endif
 
             <main class="form-signin">
-                <h1 class="h3 mb-3 fw-normal text-center">Login Admin Mojoo</h1>
+                <h1 class="h3 mb-3 fw-normal text-center">Login Admin Majoo</h1>
                 <form action="/login" method="post">
                     @csrf
                     <div class="form-floating">

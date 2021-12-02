@@ -14,5 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [LoginController::class, 'index']);
+Route::get(
+    '/',
+    function () {
+        return view('home.index', [
+            'title' => 'Home',
+            'active' => 'home'
+        ]);
+    }
+);
+Route::get('/login', [LoginController::class, 'index']);
 Route::post('/login', [LoginController::class, 'authenticate']);
