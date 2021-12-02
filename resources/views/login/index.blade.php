@@ -23,7 +23,6 @@
                 <h1 class="h3 mb-3 fw-normal text-center">Login Admin Mojoo</h1>
                 <form action="/login" method="post">
                     @csrf
-
                     <div class="form-floating">
                         <input name="email" type="email" class="form-control @error('email') is-invalid @enderror" id="email"
                             placeholder="name@example.com" autofocus required value="{{ old('email') }}">
