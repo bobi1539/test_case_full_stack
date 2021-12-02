@@ -17,6 +17,9 @@
             @if (session()->has('messageSuccess'))
                 <div id="flash-data-success" data-flashdata="{{ session('messageSuccess') }}"></div>
             @endif
+            @error('name')
+                <div id="flash-data-error" data-flashdata="{{ $message }}"></div>
+            @enderror
             <div class="table">
                 <div class="table-responsive">
                     <table class="table table-striped">
