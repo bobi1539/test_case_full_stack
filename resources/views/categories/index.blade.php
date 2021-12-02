@@ -22,7 +22,8 @@
                                     <td>{{ $category->name }}</td>
                                     <td class="text-center">
                                         <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#editCategoryModal">
+                                            data-bs-target="#editCategoryModal"
+                                            onclick="handleEditButton({{ $category->id }})">
                                             edit
                                         </a>
                                     </td>
@@ -44,27 +45,23 @@
     </div>
 
     <!-- Modal Tambah Data-->
-    <div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="editCategoryModalLabel">Edit Kategori</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="/categories" method="POST" id="form-update-group">
+                <form action="/categories" method="POST" id="form-update-category">
                     @method('put')
                     @csrf
                     <div class="modal-body">
-                        {{-- <div class="mb-3">
-                            <label for="job_class" class="form-label">Golongan</label>
-                            <input name="job_class" type="text" class="form-control" id="job_class_update"
-                                value="{{ old('job_class') }}" required>
-                        </div>
                         <div class="mb-3">
-                            <label for="basic_salary" class="form-label">Gaji Pokok</label>
-                            <input name="basic_salary" type="text" class="form-control" id="basic_salary_update"
-                                value="{{ old('basic_salary') }}" required>
-                        </div> --}}
+                            <label for="name" class="form-label">Nama Kategori</label>
+                            <input name="name" type="text" class="form-control" id="name_update"
+                                value="{{ old('name') }}" required>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -75,4 +72,19 @@
         </div>
     </div>
 
+    <script>
+        const nameUpdate = document.getElementById('name_update');
+        const formUpdateCategory = document.getElementById('form-update-category');
+
+        function handleEditButton(id) {
+            fetch('/categories/' + id + '/edit')
+                .then(response => response.json())
+                .then(data => {
+                    nameUpdate.value = data.category.name
+                });
+
+            // mengganti action form update
+            formUpdateCategory.action = "/categories/" + id;
+        }
+    </script>
 @endsection
