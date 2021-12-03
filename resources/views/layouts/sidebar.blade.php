@@ -14,6 +14,12 @@
                     Kategori Produk
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link {{ Request::is('products*') ? 'active' : '' }}" href="/products">
+                    <span data-feather="file-text"></span>
+                    Data Produk
+                </a>
+            </li>
         </ul>
     </div>
 </nav>

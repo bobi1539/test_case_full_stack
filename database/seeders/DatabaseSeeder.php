@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -21,5 +22,6 @@ class DatabaseSeeder extends Seeder
             'password'=> bcrypt('password')
         ]);
         Category::factory(15)->create();
+        Product::factory(25)->create();
     }
 }
