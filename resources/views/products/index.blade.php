@@ -41,12 +41,13 @@
                                     <td>{!! $product->description !!}</td>
                                     <td class="text-right">{{ number_format($product->price, 0, ',', '.') }}</td>
                                     <td>
-                                        <img width="100" class="img-thumbnail" src="{{ asset('storage/' . $product->image) }}" alt="">
+                                        <img width="100" class="img-thumbnail"
+                                            src="{{ asset('storage/' . $product->image) }}" alt="">
                                     </td>
                                     <td class="text-center">
                                         <a href="#" class="btn btn-sm btn-outline-success" data-bs-toggle="modal"
-                                            data-bs-target="#editCategoryModal"
-                                            onclick="handleEditButton({{ $product->id }})">
+                                            data-bs-target="#detailProductModal"
+                                            onclick="handleDetailButton({{ $product->id }})">
                                             <i class="fas fa-eye"></i>
                                         </a>
                                     </td>
@@ -79,4 +80,69 @@
         </div>
     </div>
 
+    <!-- Modal detail Product-->
+    <div class="modal fade" id="detailProductModal" tabindex="-1" aria-labelledby="detailProductModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detailProductModalLabel">Detail Product</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <td>Nama Produk</td>
+                                <td>:</td>
+                                <td id="detailProductName"></td>
+                            </tr>
+                            <tr>
+                                <td>Kategori</td>
+                                <td>:</td>
+                                <td id="detailCategoryName"></td>
+                            </tr>
+                            <tr>
+                                <td>Deskripsi</td>
+                                <td>:</td>
+                                <td id="detailProductDescription"></td>
+                            </tr>
+                            <tr>
+                                <td>Harga</td>
+                                <td>:</td>
+                                <td id="detailProductPrice"></td>
+                            </tr>
+                            <tr>
+                                <td>Gambar</td>
+                                <td>:</td>
+                                <td>
+                                    <img id="detailProductImage" width="100" class="img-thumbnail">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const detailProductName = document.getElementById('detailProductName');
+        const detailCategoryName = document.getElementById('detailCategoryName');
+        const detailProductDescription = document.getElementById('detailProductDescription');
+        const detailProductPrice = document.getElementById('detailProductPrice');
+        const detailProductImage = document.getElementById('detailProductImage');
+
+        function handleDetailButton(id) {
+            fetch('/products/' + id)
+                .then(response => response.json())
+                .then(data => {
+                    detailProductName.innerHTML = data.product.name,
+                        detailCategoryName.innerHTML = data.product.category.name,
+                        detailProductDescription.innerHTML = data.product.description,
+                        detailProductPrice.innerHTML = data.product.price,
+                        detailProductImage.src = "storage/" + data.product.image
+                });
+        }
+    </script>
 @endsection

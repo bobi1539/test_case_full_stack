@@ -48,10 +48,10 @@ class ProductController extends Controller
             'category_id'   => ['required'],
             'price'         => ['required'],
             'description'   => ['required'],
-            'image'         => ['required','image', 'file', 'max:1024']
+            'image'         => ['required', 'image', 'file', 'max:1024']
         ]);
 
-        if($request->file('image')){
+        if ($request->file('image')) {
             $validatedData['image'] = $request->file('image')->store('product-images');
         }
 
@@ -67,7 +67,9 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return response()->json([
+            'product' => $product->load('category')
+        ]);
     }
 
     /**
