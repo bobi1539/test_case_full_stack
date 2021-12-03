@@ -6,6 +6,7 @@ use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -103,6 +104,10 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        if ($product->image && $product->image != 'product-images/default-image.jpg') {
+            Storage::delete($product->image);
+        }
+        Product::destroy($product->id);
+        return redirect('/products')->with('messageSuccess', 'Produk berhasil dihapus');
     }
 }
