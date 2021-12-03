@@ -19,6 +19,9 @@
 
     {{-- My style css --}}
     <link rel="stylesheet" href="/css/style.css">
+
+    {{-- dashboard css --}}
+    <link rel="stylesheet" href="/css/dashboard.css">
 </head>
 
 <body>
@@ -45,6 +48,9 @@
 
     {{-- myscript --}}
     <script src="{{ asset('js/myscript.js') }}"></script>
+
+    {{-- dashboard js --}}
+    <script src="{{ asset('js/dashboard.js') }}"></script>
 </body>
 
 </html>
