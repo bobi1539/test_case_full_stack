@@ -12,6 +12,9 @@
 
     {{-- My style css --}}
     <link rel="stylesheet" href="/css/style.css">
+
+    {{-- font awesome --}}
+    <link rel="stylesheet" href="/font-awesome/css/all.css">
 </head>
 
 <body>

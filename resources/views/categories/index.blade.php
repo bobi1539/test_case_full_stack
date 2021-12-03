@@ -37,7 +37,7 @@
                                         <a href="#" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
                                             data-bs-target="#editCategoryModal"
                                             onclick="handleEditButton({{ $category->id }})">
-                                            edit
+                                            <i class="fas fa-pen"></i>
                                         </a>
                                     </td>
                                     <td class="text-center">
@@ -46,7 +46,7 @@
                                             @csrf
                                             <button type="submit" class="btn btn-sm btn-outline-danger"
                                                 onclick="return confirm('Yakin data ingin dihapus?')">
-                                                hapus
+                                                <i class="fas fa-trash"></i>
                                             </button>
                                         </form>
                                     </td>
