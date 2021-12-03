@@ -32,5 +32,5 @@ Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
 
-Route::resource('/categories', CategoryController::class)->middleware('auth');
+Route::resource('/categories', CategoryController::class)->middleware('auth')->except(['create', 'show']);
 Route::resource('/products', ProductController::class)->middleware('auth');

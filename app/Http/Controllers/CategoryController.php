@@ -17,18 +17,8 @@ class CategoryController extends Controller
     {
         return view('categories.index', [
             'title' => 'Kategori Produk',
-            'categories' => Category::paginate(10)
+            'categories' => Category::paginate(7)
         ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -44,17 +34,6 @@ class CategoryController extends Controller
         ]);
         Category::create($validatedData);
         return redirect('/categories')->with('messageSuccess', 'Kategori berhasil ditambahkan');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Category $category)
-    {
-        //
     }
 
     /**

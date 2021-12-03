@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'ucup@gmail.com',
             'password'=> bcrypt('password')
         ]);
-        Category::factory(15)->create();
+        Category::factory(11)->create();
         Product::factory(25)->create();
     }
 }

@@ -95,3 +95,10 @@ body {
     font-size: .75rem;
     text-transform: uppercase;
 }
+
+
+/* hidden file upload trix editor */
+
+trix-toolbar [data-trix-button-group="file-tools"] {
+    display: none;
+}

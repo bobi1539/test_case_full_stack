@@ -10,11 +10,15 @@
 
     <title>{{ $title }}</title>
 
-    {{-- My style css --}}
-    <link rel="stylesheet" href="/css/style.css">
-
     {{-- font awesome --}}
     <link rel="stylesheet" href="/font-awesome/css/all.css">
+
+    {{-- trix editor --}}
+    <link rel="stylesheet" href="/css/trix.css">
+    <script type="text/javascript" src="/js/trix.js"></script>
+
+    {{-- My style css --}}
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
