@@ -52,9 +52,8 @@
                                         </a>
                                     </td>
                                     <td class="text-center">
-                                        <a href="#" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
-                                            data-bs-target="#editCategoryModal"
-                                            onclick="handleEditButton({{ $product->id }})">
+                                        <a href="/products/{{ $product->id }}/edit"
+                                            class="btn btn-sm btn-outline-primary">
                                             <i class="fas fa-pen"></i>
                                         </a>
                                     </td>

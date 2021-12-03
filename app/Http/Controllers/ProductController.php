@@ -81,7 +81,11 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('products.edit', [
+            'title' => 'Edit Produk',
+            'product' => $product,
+            'categories' => Category::all()
+        ]);
     }
 
     /**
@@ -93,7 +97,30 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+        $rules = [
+            'name'          => ['required', 'max:255'],
+            'category_id'   => ['required'],
+            'price'         => ['required'],
+            'description'   => ['required'],
+            'image'         => ['image', 'file', 'max:1024']
+        ];
+
+        if ($request->name != $product->name) {
+            $rules['name'] = ['required', 'unique:products'];
+        }
+
+        $validatedData = $request->validate($rules);
+
+        if ($request->file('image')) {
+            if ($request->oldImage && $request->oldImage != 'product-images/default-image.jpg') {
+                Storage::delete($request->oldImage);
+            }
+            $validatedData['image'] = $request->file('image')->store('product-images');
+        }
+
+        Product::where('id', $product->id)->update($validatedData);
+
+        return redirect('/products')->with('messageSuccess', 'Produk berhasil di update');
     }
 
     /**
