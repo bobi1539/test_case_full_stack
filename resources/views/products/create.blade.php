@@ -14,40 +14,70 @@
     </div>
 
     <form action="/products" method="POST" enctype="multipart/form-data">
-        <div class="row">
+        @csrf
+        <div class="row mb-5">
             <div class="col-lg-6">
                 <div class="mb-3">
                     <label for="name" class="form-label">Nama Produk</label>
-                    <input type="text" class="form-control" id="name" name="name">
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
+                        value="{{ old('name') }}" autofocus>
+                    @error('name')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <label for="category_id" class="form-label">Kategori</label>
-                    <select class="form-select" aria-label="Category" name="category_id" id="category_id">
-                        <option value="choice">-Pilih-</option>
+                    <select class="form-select @error('category_id') is-invalid @enderror" aria-label="Category"
+                        name="category_id" id="category_id">
+                        <option selected value="">-Pilih-</option>
                         @foreach ($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @if (old('category_id') == $category->id)
+                                <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+                            @else
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endif
                         @endforeach
                     </select>
+                    @error('category_id')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <label for="price" class="form-label">Harga</label>
-                    <input type="number" class="form-control" id="price" name="price">
+                    <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" name="price">
+                    @error('price')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
-            </div>
-            <div class="col-lg-6">
                 <div class="mb-3">
                     <label for="description" class="form-label">Deskripsi</label>
-                    <input type="hidden" class="form-control" id="description" name="description">
+                    <input type="hidden" class="form-control" id="description" name="description"
+                        value="{{ old('description') }}">
                     <trix-editor input="description"></trix-editor>
+                    @error('description')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <label for="image" class="form-label">Gambar</label>
                     <img class="img-preview img-fluid mb-3 col-sm-5">
-                    <input class="form-control" type="file" id="image" name="image" onchange="previewImage()">
+                    <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image"
+                        onchange="previewImage()">
+                    @error('image')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
+                <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Simpan</button>
     </form>
 
 @endsection

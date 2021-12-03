@@ -38,7 +38,7 @@
                                     <th class="text-center">{{ $products->firstItem() + $key }}</th>
                                     <td>{{ $product->name }}</td>
                                     <td>{{ $product->category->name }}</td>
-                                    <td>{{ $product->description }}</td>
+                                    <td>{!! $product->description !!}</td>
                                     <td class="text-right">{{ number_format($product->price, 0, ',', '.') }}</td>
                                     <td>{{ $product->image }}</td>
                                     <td class="text-center">

@@ -143,8 +143,23 @@ return [
             'rule-name' => 'custom-message',
         ],
         'name' => [
-            'unique' => 'nama sudah tersedia'
+            'unique' => 'nama sudah tersedia',
+            'required' => 'nama tidak boleh kosong'
+        ],
+        'category_id' => [
+            'required' => 'kategori tidak boleh kosong'
+        ],
+        'price' => [
+            'required' => 'harga tidak boleh kosong'
+        ],
+        'image' => [
+            'required' => 'gambar tidak boleh kosong',
+            'image' => 'file harus gambar'
+        ],
+        'description' => [
+            'required' => 'deskripsi tidak boleh kosong'
         ]
+        
     ],
 
     /*
