@@ -40,7 +40,9 @@
                                     <td>{{ $product->category->name }}</td>
                                     <td>{!! $product->description !!}</td>
                                     <td class="text-right">{{ number_format($product->price, 0, ',', '.') }}</td>
-                                    <td>{{ $product->image }}</td>
+                                    <td>
+                                        <img width="100" class="img-thumbnail" src="{{ asset('storage/' . $product->image) }}" alt="">
+                                    </td>
                                     <td class="text-center">
                                         <a href="#" class="btn btn-sm btn-outline-success" data-bs-toggle="modal"
                                             data-bs-target="#editCategoryModal"
